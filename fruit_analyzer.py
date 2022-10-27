@@ -20,12 +20,11 @@ class FruitAnalyzer:
 
         self.main_fruit_df['Count of S Ratings'] = (self.main_fruit_df[self.people]==5).sum(skipna=True,axis=1)
 
-
         self.fruit_variance_df = self.__get_variance_df()
 
         self.top_fruit = list(self.main_fruit_df.sort_values(by=['Average'],ascending = False).index)
    
-        self.most_divisve_fruit  = list(self.main_fruit_df.sort_values(by=['STD'],ascending = False).index)
+        self.most_divisive_fruit  = list(self.main_fruit_df.sort_values(by=['STD'],ascending = False).index)
 
         self.favorite_fruit = list(self.main_fruit_df.sort_values(by=['Count of S Ratings'],ascending = False).index)
     
@@ -53,5 +52,15 @@ class FruitAnalyzer:
 
 
 if __name__ == '__main__':
-
+    get_all_plots = True
     f = FruitAnalyzer()
+
+    for n in range(10):
+        print(n+1,f.top_fruit[n])
+    
+    if get_all_plots == True:
+        from visualize_fruit import VisualizeFruit        
+        v = VisualizeFruit(f)
+        from plotly.offline import plot 
+        plot(v.get_distribution_chart())
+        plot(v.get_hot_take_bar())
