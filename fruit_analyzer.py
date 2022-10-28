@@ -62,5 +62,5 @@ if __name__ == '__main__':
         from visualize_fruit import VisualizeFruit        
         v = VisualizeFruit(f)
         from plotly.offline import plot 
-        plot(v.get_distribution_chart())
-        plot(v.get_hot_take_bar())
+        plot(v.get_distribution_chart(),filename='distr_chart.html')
+        plot(v.get_hot_take_bar(),filename='hot_take.html')
