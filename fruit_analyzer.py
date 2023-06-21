@@ -20,6 +20,8 @@ class FruitAnalyzer:
 
         self.main_fruit_df['Count of S Ratings'] = (self.main_fruit_df[self.people]==5).sum(skipna=True,axis=1)
 
+        self.main_fruit_df['Count of NaNs'] =pd.isna(self.main_fruit_df[self.people]).sum(axis=1)
+
         self.fruit_variance_df = self.__get_variance_df()
 
         self.top_fruit = list(self.main_fruit_df.sort_values(by=['Average'],ascending = False).index)
@@ -27,6 +29,8 @@ class FruitAnalyzer:
         self.most_divisive_fruit  = list(self.main_fruit_df.sort_values(by=['STD'],ascending = False).index)
 
         self.favorite_fruit = list(self.main_fruit_df.sort_values(by=['Count of S Ratings'],ascending = False).index)
+
+        self.least_tried_fruit = list(self.main_fruit_df.sort_values(by=['Count of NaNs'], ascending = False).index)
     
     @staticmethod
     def __get_average(x):
@@ -52,7 +56,7 @@ class FruitAnalyzer:
 
 
 if __name__ == '__main__':
-    get_all_plots = True
+    get_all_plots = False
     f = FruitAnalyzer()
 
     for n in range(10):
@@ -62,5 +66,5 @@ if __name__ == '__main__':
         from visualize_fruit import VisualizeFruit        
         v = VisualizeFruit(f)
         from plotly.offline import plot 
-        plot(v.get_distribution_chart(),filename='distr_chart.html')
-        plot(v.get_hot_take_bar(),filename='hot_take.html')
+        plot(v.get_distribution_chart(),filename='outputs/distr_chart.html')
+        plot(v.get_hot_take_bar(),filename='outputs/hot_take.html')
