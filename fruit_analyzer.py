@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+#The Fruit Form: https://tiermaker.com/create/fruit-but-it-has-a-lot-of-fruits-514755
 
 
 class FruitAnalyzer:
@@ -25,13 +26,13 @@ class FruitAnalyzer:
         self.fruit_variance_df = self.__get_variance_df()
 
         self.top_fruit = list(self.main_fruit_df.sort_values(by=['Average'],ascending = False).index)
-   
+
         self.most_divisive_fruit  = list(self.main_fruit_df.sort_values(by=['STD'],ascending = False).index)
 
         self.favorite_fruit = list(self.main_fruit_df.sort_values(by=['Count of S Ratings'],ascending = False).index)
 
         self.least_tried_fruit = list(self.main_fruit_df.sort_values(by=['Count of NaNs'], ascending = False).index)
-    
+
     @staticmethod
     def __get_average(x):
         non_nan_count = 0
@@ -40,7 +41,7 @@ class FruitAnalyzer:
             if n is not None:
                 non_nan_count += 1
                 total += n
-        
+
         return total / non_nan_count
 
 
@@ -61,10 +62,10 @@ if __name__ == '__main__':
 
     for n in range(10):
         print(n+1,f.top_fruit[n])
-    
+
     if get_all_plots == True:
-        from visualize_fruit import VisualizeFruit        
+        from visualize_fruit import VisualizeFruit
         v = VisualizeFruit(f)
-        from plotly.offline import plot 
+        from plotly.offline import plot
         plot(v.get_distribution_chart(),filename='outputs/distr_chart.html')
         plot(v.get_hot_take_bar(),filename='outputs/hot_take.html')
