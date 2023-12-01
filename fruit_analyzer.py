@@ -59,9 +59,18 @@ class FruitAnalyzer:
 if __name__ == '__main__':
     get_all_plots = False
     f = FruitAnalyzer()
-
+    print('top fruit')
     for n in range(10):
         print(n+1,f.top_fruit[n])
+    print('favorite fruit')
+    for n in range(10):
+        print(n+1,f.favorite_fruit[n])
+    print('most divisive')
+    for n in range(10):
+        print(n+1,f.most_divisive_fruit[n])
+    print('least tried')
+    for n in range(10):
+        print(n+1,f.least_tried_fruit[n])
 
     if get_all_plots == True:
         from visualize_fruit import VisualizeFruit
