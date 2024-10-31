@@ -57,7 +57,7 @@ class FruitAnalyzer:
 
 
 if __name__ == '__main__':
-    get_all_plots = False
+    get_all_plots = True
     f = FruitAnalyzer()
     print('top fruit')
     for n in range(10):
